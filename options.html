@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>T4 Preview Link Auditor – How It Works</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 1rem;
+      line-height: 1.5;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: auto;
+    }
+    h1, h2 { color: #333; }
+    .legend { margin-top: 1rem; }
+    .label {
+      display: inline-block;
+      padding: 0.4em 1em;
+      margin: 0.3em 0;
+      border-radius: 4px;
+      font-weight: bold;
+      color: white;
+    }
+    .st-andrews { background: #00539b; }
+    .t4 { background: #c60c46; }
+    .external { background: #ffdf00; color: #202024; }
+    .relative { background: #111; }
+    .malformed-tel { background: #bf5909; color: white; }
+    .doc-note { font-style: italic; font-size: 0.9em; margin-top: 0.5em; }
+    code { background: #eee; padding: 0.2em 0.4em; border-radius: 3px; }
+    .icon-preview img { vertical-align: middle; margin-left: 0.5rem; height: 16px; width: 16px; }
+  </style>
+</head>
+<body>
+  <h1>T4 Preview Link Auditor for Firefox</h1>
+
+  <h2>Download</h2>
+
+  <h2>Description</h2>
+  <p>This tool audits all links within the</p>
+  <ul>
+    <li><code>&lt;main id="content-begin"&gt;</code> (T4 New) or </li>
+    <li><code>&lt;div id="mainwrapper"&gt;</code> (T4 Old)</li>
+  </ul>
+
+   sections of T4 preview (or live) pages. It categorises, highlights and logs them when you click the extension button.</p>
+
+<h2>How to install in Firefox (permanently)</h2>
+  <ol>
+    <li><strong>Download:</strong> Save the signed extension file <code>.xpi</code> provided by your team (for example, <code>t4-preview-link-auditor.xpi</code>).</li>
+    <li><strong>Open Add-ons Manager:</strong> In Firefox, go to <a href="about:addons" target="_blank">about:addons</a> or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd>.</li>
+    <li><strong>Click the gear icon ⚙️</strong> near the top right and choose <strong>Install Add-on From File…</strong>.</li>
+    <li><strong>Select the .xpi file</strong> you downloaded and confirm the installation when prompted.</li>
+    <li>The T4 Preview Link Auditor button<img src="icon48.png" alt="Extension icon" style="vertical-align: middle; margin-left: 0.5rem; height: 24px; width: 24px;"> will appear in your Firefox toolbar.</li>
+  </ol>
+
+  <p><strong>Tip:</strong> You only need to do this once. Unlike temporary installations, this version will remain installed after restarting Firefox.</p>
+
+  <h2>How to install in Firefox (temporarily)</h2>
+    <ol>
+      <li><strong>Download:</strong> <a href="https://www.digitalshed45.co.uk/t4-preview-links-audit.zip">Download the extension zip file</a>.</li>
+      <li><strong>Unzip:</strong> Extract the contents of the zip file to a folder on your computer.</li>
+      <li><strong>Open Add-ons Manager:</strong> In Firefox, go to <a href="about:addons" target="_blank">about:addons</a> (or press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>A</kbd>).</li>
+      <li><strong>Click the gear icon ⚙️</strong> near the top right and choose <strong>Debug Add-ons</strong> (or go directly to <a href="about:debugging#/runtime/this-firefox" target="_blank">about:debugging#/runtime/this-firefox</a>).</li>
+      <li><strong>Load Temporary Add-on:</strong> Click <strong>Load Temporary Add-on</strong> and select the <code>manifest.json</code> file inside the folder you unzipped.</li>
+      <li>The T4 Preview Link Auditor button<img src="icon48.png" alt="Extension icon" style="vertical-align: middle; margin-left: 0.5rem; height: 24px; width: 24px;"> should now appear in your Firefox toolbar.</li>
+    </ol>
+
+    <p><strong>Note:</strong> This extension will disappear when you close Firefox. To use it again, repeat the steps above to load it temporarily.</p>
+
+  <h2>How to Use</h2>
+  <ol>
+    <li>Navigate to a preview page in T4.</li>
+    <li>Click the <strong>T4 Preview Link Auditor</strong> icon in the Chrome toolbar<img src="icon48.png" alt="Extension icon" style="vertical-align: middle; margin-left: 0.5rem; height: 24px; width: 24px;">.</li>
+    <li>All links within the main content will be highlighted using the colour categories below.</li>
+    <li>Open the Developer Console (<kbd>F12</kbd> → Console tab) to view the audit results.</li>
+    <li>To reset the page and remove colour highlights, simply refresh the current page.</li>
+  </ol>
+
+  <h2>Link Categories and Highlight Colours</h2>
+  <div class="legend">
+    <div><span class="label st-andrews">St Andrews links</span> – Links to <code>*.st-andrews.ac.uk</code> (excluding t4live).</div>
+    <div><span class="label t4">T4 links</span> – Links to other pages in T4 preview (e.g. <code>https://t4live.st-andrews.ac.uk/...</code>).</div>
+    <div><span class="label external">External links</span> – Links to domains outside <code>st-andrews.ac.uk</code>, including valid <code>mailto:</code> and <code>tel:</code> addresses.</div>
+    <div><span class="label relative">Relative links</span> – Links using relative paths (e.g. <code>/students/</code>).</div>
+    <div><span class="label relative">Anchor links</span> – Links starting with <code>#</code> that point to on-page IDs.</div>
+    <div><span class="label malformed-tel">Malformed tel: links</span> – Telephone links containing spaces or %20.</div>
+  </div>
+
+  <h2>Supported File Types</h2>
+  <p>The extension automatically adds a filetype icon after links ending with these extensions:</p>
+  <ul>
+    <li>.doc <span class="icon-preview"><img src="icons/doc.png" alt="doc icon"></span></li>
+    <li>.docx <span class="icon-preview"><img src="icons/docx.png" alt="docx icon"></span></li>
+    <li>.pdf <span class="icon-preview"><img src="icons/pdf.png" alt="pdf icon"></span></li>
+    <li>.xls <span class="icon-preview"><img src="icons/xls.png" alt="xls icon"></span></li>
+    <li>.xlsx <span class="icon-preview"><img src="icons/xlsx.png" alt="xlsx icon"></span></li>
+    <li>.ppt <span class="icon-preview"><img src="icons/ppt.png" alt="ppt icon"></span></li>
+    <li>.pptx <span class="icon-preview"><img src="icons/pptx.png" alt="pptx icon"></span></li>
+    <li>.zip <span class="icon-preview"><img src="icons/zip.png" alt="zip icon"></span></li>
+  </ul>
+  <p class="doc-note">Links to these file types are styled according to their domain: St Andrews (blue) or external (yellow).</p>
+
+  <h2>Extra Highlighting</h2>
+  <ul>
+    <li><span class="label st-andrews">Email:</span> <code>mailto:@st-andrews.ac.uk</code> → St Andrews (blue)</li>
+    <li><span class="label external">Email:</span> <code>mailto:@</code> any other domain → External (yellow)</li>
+    <li><span class="label external">Phone:</span> <code>tel:</code> links → External (yellow) with telephone icon</li>
+    <li><span class="label malformed-tel">Phone:</span> <code>tel:</code> links with spaces or <code>%20</code> → Highlighted in orange with telephone icon</li>
+  </ul>
+
+  <h2>Console Output</h2>
+  <p>After activation, links are listed in the Console grouped by category and in order of appearance. Each link includes its text and full URL.</p>
+
+</body>
+</html>
