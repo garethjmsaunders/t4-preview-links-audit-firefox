@@ -2,6 +2,7 @@
 
 <img src="icon128.png" alt="xls" width="128">
 
+
 ## Description
 
 This tool audits all links within the
@@ -10,6 +11,7 @@ This tool audits all links within the
 * `<div id="mainwrapper">` (T4 Old)
 
 sections of T4 preview (or live) pages. It categorises, highlights and logs them in the browser console when you click the extension button.
+
 
 ## How to install in Firefox (permanently) 🛡️ Recommended
 
@@ -20,6 +22,7 @@ sections of T4 preview (or live) pages. It categorises, highlights and logs them
 5. The **T4 Preview Link Auditor button** <img src="icon48.png" alt="xls" width="24"> will appear in your Firefox toolbar.
 
 Tip: You only need to do this once. Unlike temporary installations, this version will remain installed after restarting Firefox.
+
 
 ## How to install in Firefox (temporarily)
 
@@ -32,14 +35,43 @@ Tip: You only need to do this once. Unlike temporary installations, this version
 
 Note: This extension will disappear when you close Firefox. To use it again, repeat the steps above to load it temporarily.
 
+
+## How to Use
+
+1. Navigate to a preview page in T4. (It also works with live pages.)
+2. Click the T4 Preview Link Auditor icon in the Firefox toolbar <img src="icon48.png" alt="icon" width="24">
+3. All links within the main content will be highlighted using the colour categories below.
+4. Open the Developer Console (F12 → Console tab) to view the audit results.
+5. To reset the page and remove colour highlights, simply refresh the current page.
+
 ## Link categories and highlight colours
 
-* 🟦 BLUE: St Andrews links – Links to `*.st-andrews.ac.uk` (excluding t4live).
-* 🟥 RED: T4 links – Links to other pages in T4 preview (e.g. https://t4live.st-andrews.ac.uk/...).
-* 🟨 YELLOW: External links – Links to domains outside st-andrews.ac.uk, including valid mailto: and tel: addresses.
-* ⬛ BLACK: Relative links – Links using relative paths (e.g. /students/).
-* ⬛ BLACK: Anchor links – Links starting with # that point to on-page IDs.
-* 🟧 ORANGE: Malformed tel: links – Telephone links containing spaces or %20.
+The extension highlights links using coloured backgrounds and optional icons. These colours help you quickly identify the type and destination of each link.
+
+### 🟦 Blue – St Andrews links
+
+* **Links** to `*.st-andrews.ac.uk` (excluding `t4live.st-andrews.ac.uk`)
+* **Email addresses** ending in `@st-andrews.ac.uk`
+
+### 🟥 Red – T4 links
+
+* **Links** to `https://t4live.st-andrews.ac.uk/...`
+
+### 🟨 Yellow – External links
+
+* **Links** to domains outside `st-andrews.ac.uk`
+* **Email addresses** at any **other domain** (for example `mailto:name@example.com`)
+* **Valid telephone links** (for example `tel:+441234567890`) – adds a telephone icon <img src="icons/tel.png" alt="telephone" width="24">
+
+### ⬛ Black – Internal page anchors and relative paths
+
+* **Anchor links** starting with `#` (for example `#section2`)
+* **Relative links** using `/` paths (for example `/students/`)
+
+### 🟧 Orange – Malformed telephone links
+
+* **`tel:` links** containing spaces or `%20` (for example `tel:+44 1234 567890`) – adds a telephone icon <img src="icons/tel.png" alt="telephone" width="24">
+
 
 ## Supported file types
 
@@ -56,13 +88,11 @@ The extension automatically adds a filetype icon after links ending with these e
 
 Links to these file types are styled according to their domain: St Andrews 🟦 (blue) or external 🟨 (yellow).
 
-## Extra highlighting
-
-* 🟦 Email: `mailto:{anything}@st-andrews.ac.uk` @st-andrews.ac.uk → St Andrews (blue)
-* 🟨 Email: `mailto:{anything}@any_other_domain.tld` → External (yellow)
-* 🟨 Phone: `tel:` links → External (yellow) with telephone icon
-* 🟧 Phone: `tel:` malformed links with spaces or `%20` → Highlighted in orange with telephone icon
 
 ## Console output
 
-After activation, links are listed in the Console grouped by category and in order of appearance. Each link includes its text and full URL.
+After you click the extension button, links are listed in the browser’s Developer Console, grouped by category and in the order they appear on the page. Each entry includes the link text and its full URL.
+
+1. Press `F12` or `Ctrl + Shift + I` (Windows/Linux) or `Cmd + Option + I` (Mac).
+2. Click the Console tab in the Developer Tools panel.
+3. You’ll see a grouped list of links.
